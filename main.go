@@ -11,7 +11,7 @@ import (
 
 type Cryptorank struct {
 	Name      string
-	Teg       string
+	Tag       string
 	Timestrap time.Time
 }
 
@@ -45,7 +45,7 @@ func main() {
 				case 0:
 					row.Name = selection.Text()
 				case 1:
-					row.Teg = selection.Text()
+					row.Tag = selection.Text()
 				}
 			})
 			row.Timestrap = time.Now()
