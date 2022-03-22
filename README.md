@@ -25,10 +25,22 @@
 ## Парсинг
 <details>
 
-  <summary>Уточнения</summary>
+  <summary>Выполнение задания</summary>
 
 ### Результат
 [Ссылка](https://docs.google.com/spreadsheets/d/1ngUptjK8GwupzyG-_5uZTP_oCMCAtJ-v8F85lO0D7lw/edit?usp=sharing) на google sheet
+
+### Запуск
+```bin
+git clone git@github.com:dreddsa5dies/parsecrypto.git
+cd parsecrypto/cmd
+go run main.go
+```
+
+<img title="Отображение работы" alt="легкий log" src="img/i.png">
+
+Стоит уточнить, что проверка будет завершена с ошибкой, т.к. к API Google Sheet подключен только я. Но тут и проверять особо нечего.
+
 ### Парсинг Cryptorank:
 Сделан с применением [goquery](https://github.com/PuerkitoBio/goquery).
 Обычный поиск по тегам.
