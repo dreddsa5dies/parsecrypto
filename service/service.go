@@ -20,8 +20,6 @@ import (
 
 // Write - saver data to google sheet
 func Write(a []*cryptorank.Cryptorank, b []*coingecko.CoingeckoPrice) error {
-	log.Println(a)
-	log.Println(b)
 	ctx := context.Background()
 	c, err := ioutil.ReadFile(".secret/client_secrets.json")
 	if err != nil {
@@ -51,8 +49,8 @@ func Write(a []*cryptorank.Cryptorank, b []*coingecko.CoingeckoPrice) error {
 	for i := 0; i <= len(a)-1; i++ {
 		tmp = append(tmp, []interface{}{a[i].Name, a[i].Tag, a[i].Timestrap.Format(time.RFC822)})
 	}
-	// разделитель
-	tmp = append(tmp, []interface{}{})
+
+	tmp = append(tmp, []interface{}{"", "", ""})
 
 	for i := 0; i <= len(b)-1; i++ {
 		tmp = append(tmp, []interface{}{b[i].Name, b[i].PriceUSD, b[i].Timestrap.Format(time.RFC822)})

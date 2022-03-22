@@ -2,7 +2,7 @@
 
 ## Тестовое задание
 <details>
-  <summary>Текст</summary>
+  <summary>ТЗ</summary>
 
 ### Парсинг Cryptorank:
 - Ресурс: [Cryptorank](https://cryptorank.io/)
@@ -12,7 +12,7 @@
 - Количество столбцов 3: Наименование, Теги, Timestamp.
 - Время на выполнение: Решает исполнитель
 
-### Парсинг CoinGecko
+### Парсинг CoinGecko:
 - Ресурс: [Coingecko](https://www.coingecko.com/)
 - Данные для парсинга: Валюты, их стоимость относительно доллара
 - Метод парсинга: Любой
@@ -22,6 +22,24 @@
 
 </details>
 
+## Парсинг
+<details>
+
+  <summary>Уточнения</summary>
+
+### Результат
+[Ссылка](https://docs.google.com/spreadsheets/d/1ngUptjK8GwupzyG-_5uZTP_oCMCAtJ-v8F85lO0D7lw/edit?usp=sharing) на google sheet
+### Парсинг Cryptorank:
+Сделан с применением [goquery](https://github.com/PuerkitoBio/goquery).
+Обычный поиск по тегам.
+
+### Парсинг CoinGecko:
+Сделан с применением [API](https://www.coingecko.com/en/api). Отобраны первые 65 валют из всех. Можно реализовать сортировку через добавление Len, Swap, Less и выводить топ валют (по какому угодно признаку).
+К сожалению это free, поэтому приходится вставлять задержку по времени.
+
+Простор для оптимизации просматривается, но «Преждевременная оптимизация — корень всех зол». (с) Дональд Кнут.
+
+</details>
 
 ## License
 This project is licensed under GPL license. Please read the [LICENSE](https:/github.com/dreddsa5dies/parsecrypto/tree/master/LICENSE.md) file.
