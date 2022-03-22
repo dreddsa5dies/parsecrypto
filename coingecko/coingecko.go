@@ -1,7 +1,6 @@
 package coingecko
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -10,7 +9,20 @@ import (
 	cg "github.com/superoo7/go-gecko/v3"
 )
 
-func Get() {
+// CoingeckoPrice - data model
+type CoingeckoPrice struct {
+	Name      string
+	PriceUSD  float32
+	Timestrap time.Time
+}
+
+// NewCoingeckoPrice - new data
+func NewCoingeckoPrice() *CoingeckoPrice {
+	return &CoingeckoPrice{}
+}
+
+// GetAll - parse data from coingecko.com
+func GetAll() ([]*CoingeckoPrice, error) {
 	httpClient := &http.Client{
 		Timeout: time.Second * 10,
 	}
@@ -19,16 +31,24 @@ func Get() {
 
 	list, err := cg.CoinsList()
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
+	rows := make([]*CoingeckoPrice, 65)
 	vc := []string{"usd"}
-	for k := range *list {
+	for k := 0; k <= 64; k++ {
+		row := NewCoingeckoPrice()
 		ids := []string{(*list)[k].ID}
 		sp, err := cg.SimplePrice(ids, vc)
 		if err != nil {
-			log.Fatal(err)
+			return nil, err
 		}
-		fmt.Println(fmt.Sprintf("%s usd %f", strings.TrimLeft((*list)[k].Name, "0.5X Long"), (*sp)[(*list)[k].ID]["usd"]))
+		row.Name = strings.TrimLeft((*list)[k].Name, "0.5X Long")
+		row.PriceUSD = (*sp)[(*list)[k].ID]["usd"]
+		row.Timestrap = time.Now()
+		log.Println(k, row.PriceUSD)
+		rows = append(rows, row)
+		time.Sleep(time.Millisecond * 50)
 	}
+	return rows, nil
 }

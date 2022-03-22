@@ -4,25 +4,30 @@ import (
 	"log"
 
 	"github.com/dreddsa5dies/parsecrypto/coingecko"
+	"github.com/dreddsa5dies/parsecrypto/cryptorank"
+	"github.com/dreddsa5dies/parsecrypto/service"
 )
 
 func main() {
 	log.Println("Starting... ok!")
 
-	// data, err := cryptorank.GetAll()
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
+	crypto, err := cryptorank.GetAll()
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	coingecko.Get()
+	coin, err := coingecko.GetAll()
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	log.Println("Getting data... ok!")
 
-	// err = cryptorank.Write(data)
+	err = service.Write(crypto, coin)
 
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	// log.Println("Data saved!")
+	log.Println("Data saved!")
 }
