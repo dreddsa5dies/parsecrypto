@@ -1,14 +1,16 @@
-module github.com/dreddsa5dies/parseCryptoCurrencies
+module github.com/dreddsa5dies/parsecrypto
 
 go 1.17
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.0
 	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a
 	google.golang.org/api v0.73.0
 )
 
 require (
 	cloud.google.com/go/compute v1.5.0 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/googleapis/gax-go/v2 v2.1.1 // indirect
