@@ -43,10 +43,9 @@ func main() {
 				row.Name = selection.Text()
 			case 1:
 				row.Teg = selection.Text()
-			case 3:
-				row.Timestrap = time.Now()
 			}
 		})
+		row.Timestrap = time.Now()
 		rows = append(rows, *row)
 	})
 	fmt.Println(rows)
