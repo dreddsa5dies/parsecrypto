@@ -3,24 +3,26 @@ package main
 import (
 	"log"
 
-	"github.com/dreddsa5dies/parsecrypto/service"
+	"github.com/dreddsa5dies/parsecrypto/coingecko"
 )
 
 func main() {
-	log.Println("Start... ok!")
+	log.Println("Starting... ok!")
 
-	data, err := service.GetAll()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// data, err := cryptorank.GetAll()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	log.Println("Get data... ok!")
+	coingecko.Get()
 
-	err = service.Write(data)
+	log.Println("Getting data... ok!")
 
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// err = cryptorank.Write(data)
 
-	log.Println("Data save... ok!")
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+
+	// log.Println("Data saved!")
 }

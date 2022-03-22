@@ -1,4 +1,4 @@
-package service
+package cryptorank
 
 import (
 	"context"
@@ -29,7 +29,7 @@ func NewCryptorank() *Cryptorank {
 	return &Cryptorank{}
 }
 
-// GetAll - parsed data from cryptorank.io
+// GetAll - parse data from cryptorank.io
 func GetAll() ([]*Cryptorank, error) {
 	webPage := "https://cryptorank.io/"
 
