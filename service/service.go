@@ -20,6 +20,8 @@ import (
 
 // Write - saver data to google sheet
 func Write(a []*cryptorank.Cryptorank, b []*coingecko.CoingeckoPrice) error {
+	log.Println(a)
+	log.Println(b)
 	ctx := context.Background()
 	c, err := ioutil.ReadFile(".secret/client_secrets.json")
 	if err != nil {
@@ -40,30 +42,27 @@ func Write(a []*cryptorank.Cryptorank, b []*coingecko.CoingeckoPrice) error {
 
 	spreadsheetId := "1ngUptjK8GwupzyG-_5uZTP_oCMCAtJ-v8F85lO0D7lw"
 
-	writeRange := "A1"
+	writeRange := "A:C"
 
 	var vr sheets.ValueRange
 
-	for i := 0; i <= len(a)-1; i++ {
-		tmp := []interface{}{a[i].Name, a[i].Tag, a[i].Timestrap.Format(time.RFC822)}
-		log.Println(tmp)
-		vr.Values = append(vr.Values, tmp)
+	tmp := make([][]interface{}, 0)
 
-		_, err = srv.Spreadsheets.Values.Update(spreadsheetId, writeRange, &vr).ValueInputOption("RAW").Do()
-		if err != nil {
-			return fmt.Errorf("unable to retrieve data from sheet. %v", err)
-		}
+	for i := 0; i <= len(a)-1; i++ {
+		tmp = append(tmp, []interface{}{a[i].Name, a[i].Tag, a[i].Timestrap.Format(time.RFC822)})
 	}
+	// разделитель
+	tmp = append(tmp, []interface{}{})
 
 	for i := 0; i <= len(b)-1; i++ {
-		tmp := []interface{}{b[i].Name, b[i].PriceUSD, b[i].Timestrap.Format(time.RFC822)}
-		log.Println(tmp)
-		vr.Values = append(vr.Values, tmp)
+		tmp = append(tmp, []interface{}{b[i].Name, b[i].PriceUSD, b[i].Timestrap.Format(time.RFC822)})
+	}
 
-		_, err = srv.Spreadsheets.Values.Update(spreadsheetId, writeRange, &vr).ValueInputOption("RAW").Do()
-		if err != nil {
-			return fmt.Errorf("unable to retrieve data from sheet. %v", err)
-		}
+	vr.Values = append(vr.Values, tmp...)
+
+	_, err = srv.Spreadsheets.Values.Update(spreadsheetId, writeRange, &vr).ValueInputOption("RAW").Do()
+	if err != nil {
+		return fmt.Errorf("unable to retrieve data from sheet. %v", err)
 	}
 
 	return nil

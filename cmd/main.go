@@ -16,12 +16,14 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	log.Println("Getting cryptorank... ok!")
+
 	coin, err := coingecko.GetAll()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	log.Println("Getting data... ok!")
+	log.Println("Getting coingecko... ok!")
 
 	err = service.Write(crypto, coin)
 

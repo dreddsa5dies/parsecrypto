@@ -1,7 +1,6 @@
 package coingecko
 
 import (
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -34,7 +33,7 @@ func GetAll() ([]*CoingeckoPrice, error) {
 		return nil, err
 	}
 
-	rows := make([]*CoingeckoPrice, 65)
+	rows := make([]*CoingeckoPrice, 0)
 	vc := []string{"usd"}
 	for k := 0; k <= 64; k++ {
 		row := NewCoingeckoPrice()
@@ -46,7 +45,6 @@ func GetAll() ([]*CoingeckoPrice, error) {
 		row.Name = strings.TrimLeft((*list)[k].Name, "0.5X Long")
 		row.PriceUSD = (*sp)[(*list)[k].ID]["usd"]
 		row.Timestrap = time.Now()
-		log.Println(k, row.PriceUSD)
 		rows = append(rows, row)
 		time.Sleep(time.Millisecond * 50)
 	}
