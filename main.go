@@ -34,19 +34,24 @@ func main() {
 	}
 
 	rows := make([]Cryptorank, 0)
+	// первые 3 записи
+	count := 3
 	data := doc.Find(".data-table__table-content")
 	data.First().Find("tbody").Find("tr").Each(func(iх int, sel *goquery.Selection) {
-		row := new(Cryptorank)
-		sel.Find("span").Each(func(i int, selection *goquery.Selection) {
-			switch i {
-			case 0:
-				row.Name = selection.Text()
-			case 1:
-				row.Teg = selection.Text()
-			}
-		})
-		row.Timestrap = time.Now()
-		rows = append(rows, *row)
+		if count != 0 {
+			row := new(Cryptorank)
+			sel.Find("span").Each(func(i int, selection *goquery.Selection) {
+				switch i {
+				case 0:
+					row.Name = selection.Text()
+				case 1:
+					row.Teg = selection.Text()
+				}
+			})
+			row.Timestrap = time.Now()
+			rows = append(rows, *row)
+			count--
+		}
 	})
 	fmt.Println(rows)
 }
