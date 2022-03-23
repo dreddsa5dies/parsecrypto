@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/dreddsa5dies/parsecrypto)](https://goreportcard.com/report/github.com/dreddsa5dies/parsecrypto) ![License](https://img.shields.io/badge/License-GPL-blue.svg) 
+[![Go Report](https://goreportcard.com/badge/github.com/dreddsa5dies/parsecrypto)](https://goreportcard.com/report/github.com/dreddsa5dies/parsecrypto) ![License](https://img.shields.io/badge/License-GPL-blue.svg) 
 
 ## Тестовое задание
 <details>
